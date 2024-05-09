@@ -1,0 +1,88 @@
+﻿@model IEnumerable<GestionMobilites.Models.Agent>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Liste des Agents</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-outline-primary">Créer</a>
+    <a asp-controller="Home" asp-action="Index" class="btn btn-outline-primary">Retour</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @*@Html.DisplayNameFor(model => model.FirstName)*@
+                Prénom
+            </th>
+            <th>
+                @*@Html.DisplayNameFor(model => model.LastName)*@
+                Nom
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Matricule)
+            </th>
+            <th>
+                @* @Html.DisplayNameFor(model => model.DateDebut)*@
+                Date Début
+            </th>
+@*            <th>
+                Date Fin
+            </th>*@
+            <th>
+                Agence
+            </th>
+            <th>
+                Rôle
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Statut)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Matricule)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateDebut)
+                </td>
+@*                <td>
+                    @Html.DisplayFor(modelItem => item.DateFin)
+                </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.Agence.LibelleAgence)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Role.LibelleRole)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Statut)
+                </td>
+                <td>
+                    @Html.ActionLink("Modifier", "Edit", new { id=item.Id})
+                    @Html.ActionLink("Consulter", "Details", new { id=item.Id })
+                    @Html.ActionLink("Supprimer", "Delete", new { id=item.Id })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

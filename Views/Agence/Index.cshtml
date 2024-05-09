@@ -1,0 +1,80 @@
+﻿@model IEnumerable<GestionMobilites.Models.Agence>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Liste des Agences</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-outline-primary">Créer</a>
+    <a asp-controller="Home" asp-action="Index" class="btn btn-outline-primary">Retour</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @*@Html.DisplayNameFor(model => model.LibelleAgence)*@
+                Libellé Agence
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Adresse)
+            </th>
+            <th>
+               @* @Html.DisplayNameFor(model => model.NumTelFix)*@
+               Num Tél Fix
+            </th>
+            <th>
+                @*@Html.DisplayNameFor(model => model.DateOuverture)*@
+                Date Ouverture
+            </th>
+            <th>
+                @*@Html.DisplayNameFor(model => model.DateOuverture)*@
+                Région
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null) // Vérifiez si le modèle n'est pas null
+        {
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LibelleAgence)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Adresse)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NumTelFix)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DateOuverture)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Region.LibelleRegion)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Modifier", "Edit", new { id=item.Id  })
+                        @Html.ActionLink("Consulter", "Details", new { id=item.Id  })
+                        @Html.ActionLink("Supprimer", "Delete", new {id=item.Id  })
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="3">Aucune donnée disponible</td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,75 @@
+﻿@model GestionMobilites.Models.Agent
+
+<h1>Suppression</h1>
+
+<h3>Êtes-vous sur de vouloir supprimer cet élément ?</h3>
+<div>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Id)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Id)
+        </dd>
+        <dt class = "col-sm-2">
+          @* @Html.DisplayNameFor(model => model.FirstName)*@
+           Prénom
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.FirstName)
+        </dd>
+        <dt class = "col-sm-2">
+           @* @Html.DisplayNameFor(model => model.LastName)*@
+           Nom
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
+        <dt class = "col-sm-2">
+            @*@Html.DisplayNameFor(model => model.Matricule)*@
+            Matricule
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Matricule)
+        </dd>
+        <dt class="col-sm-2">
+            Agence
+            
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Agence.LibelleAgence)
+        </dd>
+
+        <dt class="col-sm-2">
+            Rôle
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Role.LibelleRole)
+        </dd>
+        <dt class = "col-sm-2">
+            @*@Html.DisplayNameFor(model => model.DateDebut)*@
+            Date Début
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.DateDebut)
+        </dd>
+@*        <dt class = "col-sm-2">
+          Date Fin
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.DateFin)
+        </dd>*@
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Statut)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Statut)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="submit" value="Supprimer" class="btn btn-danger" /> 
+        <a asp-action="Index" class="btn btn-outline-danger">Retour</a>
+    </form>
+</div>

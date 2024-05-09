@@ -1,0 +1,43 @@
+﻿@model IEnumerable<GestionMobilites.Models.Role>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Liste des Rôles</h1>
+
+<p>
+    <a asp-action="Create" class=" btn btn-outline-primary">Créer</a>
+    <a asp-controller="Home" asp-action="Index" class="btn btn-outline-primary">Retour</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+               @* @Html.DisplayNameFor(model => model.LibelleRole)*@
+                Libellé Rôle
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LibelleRole)
+            </td>
+            <td>
+                    @Html.ActionLink("Modifier", "Edit", new {  id=item.Id  }) 
+                    @Html.ActionLink("Consulter", "Details", new {  id=item.Id  }) 
+                    @Html.ActionLink("Supprimer", "Delete", new {  id=item.Id  })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

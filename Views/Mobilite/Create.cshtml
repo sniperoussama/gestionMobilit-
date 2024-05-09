@@ -1,0 +1,133 @@
+﻿@model GestionMobilites.ViewModels.MobiliteViewModel
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Créer une nouvelle Mobilité</h1>
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+
+            @if (ViewBag.Message != null)
+            {
+                <h5 class="alert alert-danger">@ViewBag.Message</h5>
+            }
+
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="Agent.Matricule" class="control-label">Matricule Agent</label>
+                <input asp-for="Agent.Matricule" readonly class="form-control" />
+                <span asp-validation-for="Agent.Matricule" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Agent.FirstName" class="control-label">Prénom Agent</label>
+                <input asp-for="Agent.FirstName" readonly class="form-control" />
+                <span asp-validation-for="Agent.FirstName" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Agent.LastName" class="control-label">Nom Agent</label>
+                <input asp-for="Agent.LastName" readonly class="form-control" />
+                <span asp-validation-for="Agent.LastName" class="text-danger"></span>
+            </div>
+
+
+            <div class="form-group">
+                <label asp-for="RegionSourceId" class="control-label">Region Source</label>
+                <select asp-for="RegionSourceId" class="form-control" disabled
+                        asp-items="@(new SelectList(Model.RegionsSource,"Id","LibelleRegion"))"></select>
+                <span asp-validation-for="RegionSourceId" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="AgenceSourceId" class="control-label">Agence source</label>
+                <select asp-for="AgenceSourceId" class="form-control" disabled
+                        asp-items="@(new SelectList(Model.AgencesSource,"Id","LibelleAgence"))"></select>
+                <span asp-validation-for="AgenceSourceId" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="AncienRoleId" class="control-label">Ancien rôle</label>
+                <select asp-for="AncienRoleId" class="form-control" disabled
+                        asp-items="@(new SelectList(Model.RolesAncien,"Id","LibelleRole"))"></select>
+                <span asp-validation-for="AncienRoleId" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="RegionDestinationId" class="control-label">Région déstination</label>
+                <select asp-for="RegionDestinationId" class="form-control" id="ddlRegion"
+                        asp-items="@(new SelectList(Model.RegionsDestination,"Id","LibelleRegion"))"> </select>
+                <span asp-validation-for="RegionDestinationId" class="text-danger"></span>
+            </div>
+            <div class="form-group" id="divAgence" style="display:none">
+                <label asp-for="AgenceDestinationId" class="control-label">Agence déstination</label>
+                <select asp-for="AgenceDestinationId" class="form-control" id="ddlAgence"> </select>
+                <span asp-validation-for="AgenceDestinationId" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="NouveauRoleId" class="control-label">Nouveau Rôle</label>
+                <select asp-for="NouveauRoleId" class="form-control"
+                        asp-items="@(new SelectList(Model.RolesNouveau,"Id","LibelleRole"))"> </select>
+                <span asp-validation-for="NouveauRoleId" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="DateMouvement" class="control-label">Date Mouvement</label>
+                <input asp-for="DateMouvement" class="form-control" />
+                <span asp-validation-for="DateMouvement" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Créer" class="btn btn-primary" />
+                <a asp-action="Index" class="btn btn-outline-primary">Retour</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+
+    <script>
+        $(document).ready(function () {
+            $("#ddlRegion").change(function () {
+                $("#ddlAgence").empty();
+                $("#ddlAgence").append("<Option value = '-1'> --- Veuillez sélectionner une agence --- </Option>");
+                var id = $(this).val();
+                if (id == -1) {
+                    $("#divAgence").hide();
+                }
+                else {
+                    $.ajax({
+                        url: '@Url.Content("~/")' + 'Agent/GetListAgenceByCodeRegion/?id=' + id,
+                        type: 'POST',
+                        dataType: 'JSON',
+                        success: function (result) {
+                            $("#divAgence").show();
+                            $.each(result, function (i, data) {
+                                $("#ddlAgence").append('<Option value = ' + data.id + ' > ' + data.name + '</Option>');
+                            });
+                        },
+                        error:
+                            function (result) {
+                                alert("Error : " + result);
+                            }
+                    })
+                }
+
+            });
+        });
+    </script>
+
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

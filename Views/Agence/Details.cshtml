@@ -1,0 +1,62 @@
+﻿@model GestionMobilites.Models.Agence
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Consulter Agence</h1>
+
+<div>
+  
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Id)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Id)
+        </dd>
+        <dt class = "col-sm-2">
+          @*  @Html.DisplayNameFor(model => model.LibelleAgence)*@
+          Libellé Agence
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.LibelleAgence)
+        </dd>
+
+        <dt class="col-sm-2">
+          @*  @Html.DisplayNameFor(model => model.Region.LibelleRegion)*@
+          Libelle Région
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Region.LibelleRegion)
+        </dd>
+
+        <dt class = "col-sm-2">
+            @*@Html.DisplayNameFor(model => model.Adresse)*@
+            Adresse
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Adresse)
+        </dd>
+        <dt class = "col-sm-2">
+         @*   @Html.DisplayNameFor(model => model.NumTelFix)*@
+         Num Tél Fix
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.NumTelFix)
+        </dd>
+        <dt class = "col-sm-2">
+            @*@Html.DisplayNameFor(model => model.DateOuverture)*@
+            Date Ouverture
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.DateOuverture)
+        </dd>
+    </dl>
+</div>
+<div>
+    
+    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Modifier</a>
+    <a asp-action="Index" class=" btn btn-outline-primary">Retour</a>
+</div>

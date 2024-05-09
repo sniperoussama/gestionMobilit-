@@ -1,0 +1,61 @@
+﻿@model GestionMobilites.Models.Agence
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Suppression</h1>
+
+<h3>Êtes-vous sur de vouloir supprimer cet élément ?</h3>
+<div>
+@*    <h4>Agence</h4>*@
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Id)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Id)
+        </dd>
+        <dt class="col-sm-2">
+           @* @Html.DisplayNameFor(model => model.Region.LibelleRegion)*@
+           Libbelle Région
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Region.LibelleRegion)
+        </dd>
+        <dt class="col-sm-2">
+            @*@Html.DisplayNameFor(model => model.LibelleAgence)*@
+            Libellé Agence
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.LibelleAgence)
+        </dd>
+        <dt class="col-sm-2">
+           @* @Html.DisplayNameFor(model => model.Adresse)*@
+           Adresse 
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Adresse)
+        </dd>
+        <dt class="col-sm-2">
+          @* @Html.DisplayNameFor(model => model.NumTelFix)*@
+          Num Tél Fix
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.NumTelFix)
+        </dd>
+        <dt class="col-sm-2">
+            @*@Html.DisplayNameFor(model => model.DateOuverture)*@
+            Date Ouverture
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DateOuverture)
+        </dd>
+    </dl>
+
+    <form asp-action="Delete">
+        <input type="submit" value="Supprimer" class="btn btn-danger" />
+        <a asp-action="Index" class="btn btn-outline-danger">Retour</a>
+    </form>
+</div>

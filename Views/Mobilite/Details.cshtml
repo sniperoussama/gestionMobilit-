@@ -1,0 +1,96 @@
+﻿@model GestionMobilites.Models.Mobilite
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Consulter Mobilité</h1>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Id)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Id)
+        </dd>
+@*        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.MatriculeUserSaisie)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.MatriculeUserSaisie)
+        </dd>*@
+        <dt class="col-sm-2">
+            Matricule agent
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Agent.Matricule)
+        </dd>
+        <dt class="col-sm-2">
+            Prénom agent
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Agent.FirstName)
+        </dd>
+        <dt class="col-sm-2">
+            Nom agent
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Agent.LastName)
+        </dd>
+        <dt class="col-sm-2">
+            @*@Html.DisplayNameFor(model => model.RegionSource)*@
+            Region Source
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.RegionSource.LibelleRegion)
+        </dd>
+        <dt class="col-sm-2">
+            @*@Html.DisplayNameFor(model => model.AgenceSource)*@
+            Agence Source
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.AgenceSource.LibelleAgence)
+        </dd>
+        <dt class="col-sm-2">
+            @*@Html.DisplayNameFor(model => model.AncienRole)*@
+            Ancien rôle
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.AncienRole.LibelleRole)
+        </dd>
+        <dt class="col-sm-2">
+            @*@Html.DisplayNameFor(model => model.NouveauRole)*@
+            Nouveau rôle
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.NouveauRole.LibelleRole)
+        </dd>
+        <dt class="col-sm-2">
+            @*@Html.DisplayNameFor(model => model.RegionDestination)*@
+            Region destination
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.RegionDestination.LibelleRegion)
+        </dd>
+        <dt class="col-sm-2">
+            @*@Html.DisplayNameFor(model => model.AgenceDestination)*@
+            Agence destination
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.AgenceDestination.LibelleAgence)
+        </dd>
+        <dt class = "col-sm-2">
+           Date Mouvement
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.DateMouvement)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Modifier</a>
+    <a asp-action="Index" class=" btn btn-outline-primary">Retour</a>
+</div>

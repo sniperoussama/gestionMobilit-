@@ -1,0 +1,46 @@
+﻿@model IEnumerable<GestionMobilites.Models.Region>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    
+}
+
+<h1>Liste des Régions</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-outline-primary">Créer</a>
+    <a asp-controller="Home" asp-action="Index" class="btn btn-outline-primary">Retour</a>
+
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @*@Html.DisplayNameFor(model => model.LibelleRegion)*@
+                Libellé Région
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LibelleRegion)
+            </td>
+            <td>
+                @Html.ActionLink("Modifier", "Edit", new { id=item.Id }) 
+                    @Html.ActionLink("Consulter", "Details", new { id=item.Id }) 
+                    @Html.ActionLink("Supprimer", "Delete", new { id=item.Id })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

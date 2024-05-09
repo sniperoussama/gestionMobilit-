@@ -1,0 +1,99 @@
+﻿@model IEnumerable<GestionMobilites.Models.Mobilite>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Liste des Mobilités</h1>
+
+<p>
+    <a asp-action="SearchAgent" class="btn btn-outline-primary">Créer</a>
+    <a asp-controller="Home" asp-action="Index" class="btn btn-outline-primary">Retour</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Agent.Matricule)
+            </th>
+            <th>
+                Prénom
+            </th>
+            <th>
+                Nom
+            </th>
+            <th>
+                Region Source
+            </th>
+            <th>
+                Agence Source
+            </th>
+            <th>
+                Ancien Rôle
+            </th>
+            <th>
+                Region Destination
+            </th>
+            <th>
+                Agence Destination
+            </th>
+            <th>
+                Nouveau Rôle
+            </th>
+            <th>
+                Date Mouvement
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Agent.Matricule)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Agent.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Agent.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RegionSource.LibelleRegion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AgenceSource.LibelleAgence)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AncienRole.LibelleRole)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RegionDestination.LibelleRegion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AgenceDestination.LibelleAgence)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NouveauRole.LibelleRole)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateMouvement)
+                </td>
+                <td>
+                    @Html.ActionLink("Modifier", "Edit", new { id=item.Id })
+                    @Html.ActionLink("Consulter", "Details", new {id=item.Id })
+                    @Html.ActionLink("Supprimer", "Delete", new { id=item.Id })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
